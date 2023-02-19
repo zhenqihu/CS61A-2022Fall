@@ -65,7 +65,14 @@ def pingpong(n):
     ...       ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    def helper(index, direction):
+        if index == n:
+            return direction
+        elif (num_eights(index) > 0) or (index % 8 == 0):
+            return helper(index + 1, - direction) + direction
+        else:
+            return helper(index + 1, direction) + direction
+    return helper(1, 1)
 
 
 def next_larger_coin(coin):

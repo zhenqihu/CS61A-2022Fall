@@ -128,7 +128,16 @@ def count_coins(change):
     >>> check(HW_SOURCE_FILE, 'count_coins', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    def helper(c, max):
+        if c == 0:
+            return 1
+        elif c < 0:
+            return 0
+        elif max is None:
+            return 0
+        else:
+            return helper(c, next_smaller_coin(max)) + helper(c - max, max)
+    return helper(change, 25)
 
 
 anonymous = False  # Change to True if you would like to remain anonymous on the final leaderboard.

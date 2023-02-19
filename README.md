@@ -2,7 +2,9 @@
 
 ## Useful Links
 
-[Course Website](https://inst.eecs.berkeley.edu/~cs61a/fa22/)
+[Course Website(Fall2022)](https://inst.eecs.berkeley.edu/~cs61a/fa22/)
+
+[Course Website(Current)](https://cs61a.org/)
 
 [Textbook](http://composingprograms.com/)
 
@@ -13,5 +15,4 @@
 ## Review Questions
 - Lab03 Q5
 - Lab03 Q6
-- HW03 Q2
-- HW03 Q3
+- HW03 Q4

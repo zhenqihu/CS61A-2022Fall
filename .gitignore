@@ -3,7 +3,6 @@
 *.ok_history
 *.ok_storage
 *.ok_messages
-*.pdf
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

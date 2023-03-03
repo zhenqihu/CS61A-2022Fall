@@ -2,6 +2,7 @@
 *.ok
 *.ok_history
 *.ok_storage
+*.ok_storage.db
 *.ok_messages
 
 # Byte-compiled / optimized / DLL files

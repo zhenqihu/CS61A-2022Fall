@@ -19,7 +19,10 @@ def summation(n, term):
     True
     """
     assert n >= 1
-    "*** YOUR CODE HERE ***"
+    if n == 1:
+        return term(n)
+    else:
+        return term(n) + summation(n - 1, term)
 
 
 def pascal(row, column):
@@ -34,7 +37,12 @@ def pascal(row, column):
     >>> pascal(4, 2)     # Row 4 (1 4 6 4 1), Column 2
     6
     """
-    "*** YOUR CODE HERE ***"
+    if column == 0:
+        return 1
+    elif row == 0:
+        return 0
+    else:
+        return pascal(row - 1, column) + pascal(row - 1, column - 1)
 
 
 def paths(m, n):
@@ -50,7 +58,10 @@ def paths(m, n):
     >>> paths(1, 157)
     1
     """
-    "*** YOUR CODE HERE ***"
+    if m == 1 or n == 1:
+        return 1
+    else:
+        return paths(m - 1, n) + paths(m, n - 1)
 
 
 def couple(s, t):
@@ -66,7 +77,7 @@ def couple(s, t):
     [['c', 's'], [6, '1']]
     """
     assert len(s) == len(t)
-    "*** YOUR CODE HERE ***"
+    return [[s[i], t[i]] for i in range(len(s))]
 
 
 def double_eights(n):

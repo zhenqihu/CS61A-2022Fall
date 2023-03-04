@@ -101,7 +101,13 @@ def double_eights(n):
     >>> check(HW_SOURCE_FILE, 'double_eights', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    tens, ones = n // 10, n % 10
+    if tens % 10 == 8 and ones == 8:
+        return True
+    elif tens < 10:
+        return False
+    else:
+        return double_eights(tens)
 
 
 def coords(fn, seq, lower, upper):
@@ -112,7 +118,7 @@ def coords(fn, seq, lower, upper):
     [[-2, 4], [1, 1], [3, 9]]
     """
     "*** YOUR CODE HERE ***"
-    return ______
+    return [[i, fn(i)] for i in seq if fn(i) >= lower and fn(i) <= upper]
 
 
 def riffle(deck):
@@ -125,4 +131,4 @@ def riffle(deck):
     [0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9, 19]
     """
     "*** YOUR CODE HERE ***"
-    return _______
+    return [deck[i + (i % 2) * (len(deck) // 2) - (i + 1) // 2] for i in range(len(deck))]

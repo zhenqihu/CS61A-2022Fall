@@ -30,7 +30,11 @@ def pick(paragraphs, select, k):
     ''
     """
     # BEGIN PROBLEM 1
-    "*** YOUR CODE HERE ***"
+    select_para = [paragraphs[i] for i in range(len(paragraphs)) if select(paragraphs[i])]
+    if len(select_para) < k + 1:
+        return ''
+    else:
+        return select_para[k]
     # END PROBLEM 1
 
 
@@ -49,7 +53,14 @@ def about(topic):
     """
     assert all([lower(x) == x for x in topic]), 'topics should be lowercase.'
     # BEGIN PROBLEM 2
-    "*** YOUR CODE HERE ***"
+
+    def select_topic(paragraph):
+        para_filter = split(lower(remove_punctuation(paragraph)))
+        for t in topic:
+            if t in para_filter:
+                return True
+        return False
+    return select_topic
     # END PROBLEM 2
 
 

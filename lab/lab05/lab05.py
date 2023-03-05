@@ -14,7 +14,12 @@ def flatten(s):
     >>> x
     [[1, [1, 1]], 1, [1, 1]]
     """
-    "*** YOUR CODE HERE ***"
+    if not s:
+        return []
+    elif type(s[0]) == list:
+        return flatten(s[0]) + flatten(s[1:])
+    else:
+        return [s[0]] + flatten(s[1:])
 
 
 from math import sqrt
@@ -31,7 +36,8 @@ def distance(city_a, city_b):
     >>> distance(city_c, city_d)
     5.0
     """
-    "*** YOUR CODE HERE ***"
+    return sqrt((get_lat(city_a) - get_lat(city_b)) ** 2 +
+                (get_lon(city_a) - get_lon(city_b)) ** 2)
 
 
 def closer_city(lat, lon, city_a, city_b):
@@ -49,7 +55,11 @@ def closer_city(lat, lon, city_a, city_b):
     >>> closer_city(41.29, 174.78, bucharest, vienna)
     'Bucharest'
     """
-    "*** YOUR CODE HERE ***"
+    city_c = make_city('Test', lat, lon)
+    if distance(city_a, city_c) < distance(city_b, city_c):
+        return get_name(city_a)
+    else:
+        return get_name(city_b)
 
 
 def check_city_abstraction():
@@ -150,7 +160,12 @@ def berry_finder(t):
     >>> berry_finder(t)
     True
     """
-    "*** YOUR CODE HERE ***"
+    if label(t) == 'berry':
+        return True
+    for branch in branches(t):
+        if berry_finder(branch):
+            return True
+    return False
 
 
 def sprout_leaves(t, leaves):
@@ -186,7 +201,10 @@ def sprout_leaves(t, leaves):
           1
           2
     """
-    "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        return tree(label(t), branches=[tree(i) for i in leaves])
+    else:
+        return tree(label(t), branches=[sprout_leaves(b, leaves) for b in branches(t)])
 
 # Abstraction tests for sprout_leaves and berry_finder
 
@@ -249,7 +267,10 @@ def preorder(t):
     >>> preorder(tree(2, [tree(4, [tree(6)])]))
     [2, 4, 6]
     """
-    "*** YOUR CODE HERE ***"
+    order = [label(t)]
+    for b in branches(t):
+        order += preorder(b)
+    return order
 
 
 def add_trees(t1, t2):
@@ -287,8 +308,7 @@ def add_trees(t1, t2):
         5
       5
     """
-    "*** YOUR CODE HERE ***"
-
+    
 
 def change_abstraction(change):
     """

@@ -56,10 +56,7 @@ def about(topic):
 
     def select_topic(paragraph):
         para_filter = split(lower(remove_punctuation(paragraph)))
-        for t in topic:
-            if t in para_filter:
-                return True
-        return False
+        return True in [t in para_filter for t in topic]
     return select_topic
     # END PROBLEM 2
 
@@ -90,7 +87,18 @@ def accuracy(typed, source):
     typed_words = split(typed)
     source_words = split(source)
     # BEGIN PROBLEM 3
-    "*** YOUR CODE HERE ***"
+    if len(typed_words) == 0:
+        if len(source_words) == 0:
+            return 100.0
+        else:
+            return 0.0
+    count = 0
+    for i in range(len(typed_words)):
+        if i + 1 > len(source_words):
+            break
+        if typed_words[i] == source_words[i]:
+            count += 1
+    return 100 * count / len(typed_words)
     # END PROBLEM 3
 
 
@@ -108,7 +116,7 @@ def wpm(typed, elapsed):
     """
     assert elapsed > 0, 'Elapsed time must be positive'
     # BEGIN PROBLEM 4
-    "*** YOUR CODE HERE ***"
+    return 12 * len(typed) / elapsed
     # END PROBLEM 4
 
 

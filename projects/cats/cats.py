@@ -143,7 +143,14 @@ def autocorrect(typed_word, word_list, diff_function, limit):
     'testing'
     """
     # BEGIN PROBLEM 5
-    "*** YOUR CODE HERE ***"
+    diff = [diff_function(typed_word, word, limit) for word in word_list]
+    if (min(diff) > limit) or (typed_word in word_list):
+        return typed_word
+    min_index = 0
+    for i in range(len(word_list)):
+        if diff[i] < diff[min_index]:
+            min_index = i
+    return word_list[min_index]
     # END PROBLEM 5
 
 
@@ -170,7 +177,17 @@ def feline_fixes(typed, source, limit):
     5
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    # assert False, 'Remove this line'
+    if limit < 0:
+        return limit + 1
+
+    if typed == '' or source == '':
+        return abs(len(typed) - len(source))
+
+    if typed[0] == source[0]:
+        return feline_fixes(typed[1:], source[1:], limit)
+    else:
+        return feline_fixes(typed[1:], source[1:], limit - 1) + 1
     # END PROBLEM 6
 
 
@@ -189,21 +206,20 @@ def minimum_mewtations(start, goal, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    assert False, 'Remove this line'
-    if ______________:  # Fill in the condition
+    if start == '' or goal == '' or limit < 0:  # Fill in the condition
         # BEGIN
-        "*** YOUR CODE HERE ***"
+        return abs(len(start) - len(goal))
         # END
-    elif ___________:  # Feel free to remove or add additional cases
+    elif start[0] == goal[0]:  # Feel free to remove or add additional cases
         # BEGIN
-        "*** YOUR CODE HERE ***"
+        return minimum_mewtations(start[1:], goal[1:], limit)
         # END
     else:
-        add = ...  # Fill in these lines
-        remove = ...
-        substitute = ...
+        add = minimum_mewtations(goal[0] + start, goal, limit - 1) + 1  # Fill in these lines
+        remove = minimum_mewtations(start[1:], goal, limit - 1) + 1
+        substitute = minimum_mewtations(goal[0] + start[1:], goal, limit - 1) + 1
         # BEGIN
-        "*** YOUR CODE HERE ***"
+        return min(add, remove, substitute)
         # END
 
 

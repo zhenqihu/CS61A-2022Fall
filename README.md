@@ -4,7 +4,7 @@
 
 [Course Website(Fall2022)](https://inst.eecs.berkeley.edu/~cs61a/fa22/)
 
-[Course Website(Current)](https://cs61a.org/)
+[Course Website(Latest)](https://cs61a.org/)
 
 [Textbook](http://composingprograms.com/)
 

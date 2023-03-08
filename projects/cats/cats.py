@@ -226,7 +226,7 @@ def minimum_mewtations(start, goal, limit):
 def final_diff(typed, source, limit):
     """A diff function that takes in a string TYPED, a string SOURCE, and a number LIMIT.
     If you implement this function, it will be used."""
-    assert False, 'Remove this line to use your final_diff function.'
+    return minimum_mewtations(typed, source, limit)
 
 
 FINAL_DIFF_LIMIT = 6  # REPLACE THIS WITH YOUR LIMIT
@@ -261,7 +261,15 @@ def report_progress(typed, prompt, user_id, upload):
     0.2
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    progress = 0
+    for i in range(len(typed)):
+        if typed[i] != prompt[i]:
+            break
+        else:
+            progress += 1
+    progress /= len(prompt)
+    upload({'id': user_id, 'progress': progress})
+    return progress
     # END PROBLEM 8
 
 
@@ -283,7 +291,11 @@ def time_per_word(words, times_per_player):
     [[6, 3, 6, 2], [10, 6, 1, 2]]
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    # times = [[time[i + 1] - time[i] for i in range(len(time) - 1)] for time in times_per_player]
+    times = []
+    for time in times_per_player:
+        times.append([time[i + 1] - time[i] for i in range(len(time) - 1)])
+    return match(words, times)
     # END PROBLEM 9
 
 
@@ -305,7 +317,12 @@ def fastest_words(match):
     player_indices = range(len(get_all_times(match)))  # contains an *index* for each player
     word_indices = range(len(get_all_words(match)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
-    "*** YOUR CODE HERE ***"
+    fastest = [0 for _ in word_indices]
+    for player in player_indices:
+        for word in word_indices:
+            if time(match, player, word) < time(match, fastest[word], word):
+                fastest[word] = player
+    return [[get_word(match, word) for word in word_indices if fastest[word] == player] for player in player_indices]
     # END PROBLEM 10
 
 

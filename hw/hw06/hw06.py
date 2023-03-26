@@ -33,10 +33,10 @@ class Mint:
         self.update()
 
     def create(self, coin):
-        "*** YOUR CODE HERE ***"
+        return coin(self.year)
 
     def update(self):
-        "*** YOUR CODE HERE ***"
+        self.year = Mint.present_year
 
 
 class Coin:
@@ -46,7 +46,7 @@ class Coin:
         self.year = year
 
     def worth(self):
-        "*** YOUR CODE HERE ***"
+        return self.cents + max(0, Mint.present_year - self.year - 50)
 
 
 class Nickel(Coin):
@@ -73,7 +73,12 @@ def store_digits(n):
     >>> print("Do not use str or reversed!") if any([r in cleaned for r in ["str", "reversed"]]) else None
     >>> link1 = Link(3, Link(Link(4), Link(5, Link(6))))
     """
-    "*** YOUR CODE HERE ***"
+    linked = Link.empty
+    while n > 10:
+        linked = Link(n % 10, linked)
+        n = n // 10
+    linked = Link(n, linked)
+    return linked
 
 
 def deep_map_mut(func, lnk):
@@ -93,7 +98,13 @@ def deep_map_mut(func, lnk):
     >>> print(link1)
     <9 <16> 25 36>
     """
-    "*** YOUR CODE HERE ***"
+    lnk1 = lnk
+    while lnk1 != Link.empty:
+        if isinstance(lnk1.first, Link):
+            deep_map_mut(func, lnk1.first)
+        else:
+            lnk1.first = func(lnk1.first)
+        lnk1 = lnk1.rest
 
 
 def two_list(vals, counts):
@@ -115,7 +126,16 @@ def two_list(vals, counts):
     >>> c
     Link(1, Link(1, Link(3, Link(3, Link(2)))))
     """
-    "*** YOUR CODE HERE ***"
+    if not vals:
+        return Link.empty
+    val = vals[0]
+    k = counts[0]
+    link = two_list(vals[1:], counts[1:])
+    while k > 0:
+        link = Link(val, link)
+        k -= 1
+    return link
+
 
 
 class VirFib():
@@ -144,7 +164,12 @@ class VirFib():
         self.value = value
 
     def next(self):
-        "*** YOUR CODE HERE ***"
+        if self.value == 0:
+            next = VirFib(1)
+        else:
+            next = VirFib(self.value + self.last_value)
+        next.last_value = self.value
+        return next
 
     def __repr__(self):
         return "VirFib object, value " + str(self.value)
@@ -175,7 +200,31 @@ def is_bst(t):
     >>> is_bst(t7)
     False
     """
-    "*** YOUR CODE HERE ***"
+    def bst_min(tree):
+        if tree.is_leaf():
+            return tree.label
+        min = tree.label
+        for b in tree.branches:
+            if bst_min(b) < min:
+                min = bst_min(b)
+        return min
+
+    def bst_max(tree):
+        if tree.is_leaf():
+            return tree.label
+        max = tree.label
+        for b in tree.branches:
+            if bst_max(b) > max:
+                max = bst_max(b)
+        return max
+
+    if t.is_leaf():
+        return True
+    elif len(t.branches) == 2:
+        return bst_max(t.branches[0]) <= t.label <= bst_min(t.branches[1]) and is_bst(t.branches[0]) and is_bst(t.branches[1])
+    elif len(t.branches) == 1:
+        return bst_max(t.branches[0]) <= t.label or bst_min(t.branches[0]) >= t.label and is_bst(t.branches[0])
+    return False
 
 
 class Link:

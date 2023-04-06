@@ -19,3 +19,5 @@
 - HW03 Q4
 - Lab05 Q9
 - Lab08 Q3
+- Lab09 Q2
+- Lab09 Q4

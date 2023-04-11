@@ -1,4 +1,4 @@
-# UC Berkely CS61A: Structure and Interpretation of Computer Programs (2022 Fall)
+# UC Berkeley CS61A: Structure and Interpretation of Computer Programs (2022 Fall)
 
 ## Useful Links
 

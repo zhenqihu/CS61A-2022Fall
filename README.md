@@ -1,6 +1,6 @@
 # UC Berkeley CS61A: Structure and Interpretation of Computer Programs (2022 Fall)
 
-## Useful Links
+## Resources
 
 [Course Website(Fall2022)](https://inst.eecs.berkeley.edu/~cs61a/fa22/)
 
